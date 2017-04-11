@@ -1,13 +1,10 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
-import com.sun.jmx.snmp.internal.SnmpMsgProcessingModel;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.switchTo;
 
 /**
  * Created by Averluck on 07.04.2017.
@@ -25,7 +22,12 @@ public class B2b_Realization {
     private SelenideElement fz44 = $("#SearchForm > div:nth-child(1) > div > div > div > label:nth-child(2) > i");
     private SelenideElement smp = $("#SearchForm > div:nth-child(3) > div > div > div > label > i");
     private SelenideElement fz223 = $ ("#SearchForm > div:nth-child(1) > div > div > div > label:nth-child(5) > i");
-
+    private SelenideElement fzRtc44 = $("#dnn_ctr691_View_RadioButton3");
+    private SelenideElement rtcDate = $("#aStable1 > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(2) > td:nth-child(1) > label");
+    private SelenideElement dateRtcFrom = $ ("#dnn_ctr691_View_dateFilter1From");
+    private SelenideElement dateRtcTo = $("#dnn_ctr691_View_dateFilter1To");
+    private SelenideElement buttonRtcShow = $ ("#dnn_ctr691_View_aSbuttonSearch");
+    private SelenideElement quantityRtc =$("#dnn_ctr691_View_aStotalCount");
 
     public int searchWithZmoToday(String date) {
         zmo.click();
@@ -84,7 +86,7 @@ public class B2b_Realization {
         String resultString = quantity.shouldBe(Condition.visible).getText();           //метод для разбиения числа
         Pattern pattern = Pattern.compile("[^\\d]*");       //склеиваем оба числа
         String tmp = pattern.matcher(resultString).replaceAll("");
-        tmp = tmp.replace("1000","");
+        tmp = tmp.replace(",1000","");
         int resultfz44 = Integer.parseInt(tmp);
         return resultfz44;
     }
@@ -99,10 +101,14 @@ public class B2b_Realization {
         rts.click();
         buttonSelectTender.click();
         buttomShow.click();
-        String resultString = quantity.getText();
-        Pattern pattern = Pattern.compile("[^\\d,]*");
-        int resultFz44Smp = Integer.parseInt(pattern.matcher(resultString).replaceAll(""));
-        return resultFz44Smp;
+
+        String resultString = quantity.shouldBe(Condition.visible).getText();           //метод для разбиения числа
+        Pattern pattern = Pattern.compile("[^\\d]*");       //склеиваем оба числа
+        String tmp = pattern.matcher(resultString).replaceAll("");
+        tmp = tmp.replace(",1000","");
+        int resultfz44Smp = Integer.parseInt(tmp);
+        return resultfz44Smp;
+
     }
 
     public int searchWithFZ223Minus2(String dateFirst, String dateSecond)
@@ -120,6 +126,7 @@ public class B2b_Realization {
         return resultFz223;
 
     }
+
     public int searchWithFZ223SmpMinus2(String dateFirst, String dateSecond) {
         fz223.click();
         smp.click();
@@ -132,11 +139,33 @@ public class B2b_Realization {
         String resultString = quantity.getText();
         Pattern pattern = Pattern.compile("[^\\d,]*");
         int resultFz223Smp = Integer.parseInt(pattern.matcher(resultString).replaceAll(""));
+
         return resultFz223Smp;
     }
 
-    public int searchWithZmoMinus2(String dateFirst, String dateSecond) {
+    public int searchWithZmoMinus2(String dateFirst, String dateSecond)
+    {  //9th test
         zmo.click();
+        dateFrom.setValue(dateFirst);
+        dateTo.setValue(dateSecond);
+        buttonSelectTender.click();
+        rts.click();
+        buttonSelectTender.click();
+        buttomShow.click();
+
+        String resultString = quantity.shouldBe(Condition.visible).getText();           //метод для разбиения числа
+        Pattern pattern = Pattern.compile("[^\\d]*");       //склеиваем оба числа
+        String tmp = pattern.matcher(resultString).replaceAll("");
+        tmp = tmp.replace(",1000","");
+        int resultZmoMinus = Integer.parseInt(tmp);
+
+        return resultZmoMinus;
+    }
+
+    public int searchWithZmoSmpMinus2(String dateFirst, String dateSecond)
+    {
+        zmo.click();
+        smp.click();
         dateFrom.setValue(dateFirst);
         dateTo.setValue(dateSecond);
         buttonSelectTender.click();
@@ -145,9 +174,91 @@ public class B2b_Realization {
         buttomShow.click();
         String resultString = quantity.getText();
         Pattern pattern = Pattern.compile("[^\\d,]*");
-        int resultZmoMinus = Integer.parseInt(pattern.matcher(resultString).replaceAll(""));
-        return resultZmoMinus;
+        int resultZmoSmpMinus2 = Integer.parseInt(pattern.matcher(resultString).replaceAll(""));
+
+        return resultZmoSmpMinus2;
+    }
+    public int searchWithCommercialMinus2(String dateFirst , String dateSecond)
+    {
+        commercial.click();
+        dateFrom.setValue(dateFirst);
+        dateTo.setValue(dateSecond);
+        buttonSelectTender.click();
+        rts.click();
+        buttonSelectTender.click();
+        buttomShow.click();
+
+        String resultString = quantity.getText();
+        Pattern pattern = Pattern.compile("[^\\d]*");
+        int resultCommercialMinus2 = Integer.parseInt(pattern.matcher(resultString).replaceAll(""));
+
+        return resultCommercialMinus2;
+    }
+    public int searchWithCommercialSmpMinus2( String dateFirst , String dateSecond)
+    {
+        commercial.click();
+        smp.click();
+        dateFrom.setValue(dateFirst);
+        dateTo.setValue(dateSecond);
+        buttonSelectTender.click();
+        rts.click();
+        buttonSelectTender.click();
+        buttomShow.click();
+
+        String resultString = quantity.getText();
+        Pattern pattern = Pattern.compile("[^\\d]*");
+        int resultCommercialSmpMinus2 = Integer.parseInt(pattern.matcher(resultString).replaceAll(""));
+
+        return resultCommercialSmpMinus2;
     }
 
+    public int searchWithCommercialPprf615minus2 ( String dateFirst , String dateSecond)
+    {
+        pprf615.click();
+        dateFrom.setValue(dateFirst);
+        dateTo.setValue(dateSecond);
+        buttonSelectTender.click();
+        rts.click();
+        buttonSelectTender.click();
+        buttomShow.click();
+
+        String resultString = quantity.getText();
+        Pattern pattern = Pattern.compile("[^\\d]*");
+        int resultPprf615Minus2 = Integer.parseInt(pattern.matcher(resultString).replaceAll(""));
+
+        return resultPprf615Minus2;
+
     }
+    public int searchWithFz44WithRtcToday (String dateFirst , String dateSecond , String dateRtcFirst , String dateRtcSecond)
+    {
+        fz44.click();
+        dateFrom.setValue(dateFirst);
+        dateTo.setValue(dateSecond);
+        buttonSelectTender.click();
+        rts.click();
+        buttonSelectTender.click();
+        buttomShow.click();
+
+        String resultString = quantity.shouldBe(Condition.visible).getText();           //метод для разбиения числа
+        Pattern pattern = Pattern.compile("[^\\d]*");       //склеиваем оба числа
+        String tmp = pattern.matcher(resultString).replaceAll("");
+        tmp = tmp.replace("1000","");
+        int resultFz44WithRtcToday = Integer.parseInt(tmp);
+
+
+
+        fzRtc44.click();
+        switchTo().window(1);
+        rtcDate.click();
+        dateRtcFrom.setValue(dateRtcFirst);
+        dateRtcTo.setValue(dateRtcSecond);
+        buttonRtcShow.click();
+        String resultRtcString = quantityRtc.shouldBe(Condition.visible).getText();
+
+
+
+
+        return resultFz44WithRtcToday;
+    }
+}
 

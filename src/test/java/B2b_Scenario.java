@@ -21,14 +21,14 @@ public class B2b_Scenario {
     private static final Calendar cal = Calendar.getInstance();
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "D:/Solar/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "D:/ChromeDriver/chromedriver.exe");
         Configuration.browser = "chrome";
         open("http://b2bpoint.ru/");
 
     }
 
     @Test
-    public void firstTest() {
+    public void TestZmoToday() {
         B2b_Realization tp = new B2b_Realization();
         int a1 = tp.searchWithZmoToday("07.04.2017");
         System.out.print(a1);
@@ -38,7 +38,7 @@ public class B2b_Scenario {
     }
 
     @Test
-    public void secondTest() {
+    public void TestCommercial() {
         B2b_Realization tp = new B2b_Realization();
         int a2 = tp.searchWithCommercial("07.04.2017");
         System.out.print(a2);
@@ -48,7 +48,7 @@ public class B2b_Scenario {
     }
 
     @Test                       //значения не совпадают,нужно разобраться
-    public void thirdTest() {
+    public void Test615() {
         B2b_Realization tp = new B2b_Realization();
         int a3 = tp.searchWith615("07.04.2017");
         System.out.print(a3);
@@ -58,7 +58,7 @@ public class B2b_Scenario {
     }
 
     @Test
-    public void fourthTest() {
+    public void TestFz44minus2() {
         B2b_Realization tp = new B2b_Realization();
         Calendar cal = Calendar.getInstance();                         //на 2 дня раньше(спросить у феди как можно переписать)
         String dateSecond = sdf.format(cal.getTime());
@@ -76,7 +76,7 @@ public class B2b_Scenario {
     }
 
     @Test                       //значения не совпадают,нужно разобраться
-    public void fifthTest() {
+    public void TestFz44SmpMinus2() {
         B2b_Realization tp = new B2b_Realization();
 
         Calendar cal = Calendar.getInstance();                         //на 2 дня раньше(спросить у феди как можно переписать)
@@ -95,7 +95,7 @@ public class B2b_Scenario {
     }
 
     @Test
-    public void sixthTest()
+    public void TestFZ223Minus2()
     {
         B2b_Realization tp = new B2b_Realization();
         Calendar cal = Calendar.getInstance();
@@ -114,7 +114,7 @@ public class B2b_Scenario {
     }
 
     @Test
-    public void seventhTest()                   //на b2b пришло 45,и на бете 45.на сайте тоже 45 было
+    public void TestFZ223SmpMinus2()                   //на b2b пришло 45,и на бете 45.на сайте тоже 45 было
     {
         B2b_Realization tp = new B2b_Realization();
         Calendar cal = Calendar.getInstance();
@@ -131,7 +131,7 @@ public class B2b_Scenario {
     }
 
     @Test
-    public void eighthTest()
+    public void TestZmoMinus2()
     {
         B2b_Realization tp = new B2b_Realization();
         Calendar cal = Calendar.getInstance();
@@ -139,12 +139,96 @@ public class B2b_Scenario {
         cal.add(Calendar.DATE, -2);                             //текущая дата (спросить у феди как можно переписать)
         Date todate1 = cal.getTime();
         String dateFirst = dateFormat.format(todate1);
-        int a8 = tp.searchWithFZ223SmpMinus2(dateFirst, dateSecond);
-        System.out.print(a8);
+        int a9 = tp.searchWithZmoMinus2(dateFirst, dateSecond);
+        System.out.print(a9);
 
         open("http://beta.b2bpoint.ru/");
-        int b8 = tp.searchWithFZ223SmpMinus2(dateFirst, dateSecond);
-        System.out.print(b8);
+        int b9 = tp.searchWithZmoMinus2(dateFirst, dateSecond);
+        System.out.print(b9);
 
     }
+
+    @Test                                                           ///!!!!выдает результат ,но должно быть 0 и 0
+        public void TestZmoSmpMinus2 ()
+    {
+        B2b_Realization tp = new B2b_Realization();
+        Calendar cal = Calendar.getInstance();
+        String dateSecond = sdf.format(cal.getTime());
+        cal.add(Calendar.DATE, -2);                             //текущая дата (спросить у феди как можно переписать)
+        Date todate1 = cal.getTime();
+        String dateFirst = dateFormat.format(todate1);
+        int a10 = tp.searchWithZmoSmpMinus2(dateFirst, dateSecond);
+        System.out.print(a10);
+
+        open("http://beta.b2bpoint.ru/");
+        int b10 = tp.searchWithZmoSmpMinus2(dateFirst, dateSecond);
+        System.out.print(b10);
+    }
+    @Test
+        public void TestCommercialMinus2()
+    {
+        B2b_Realization tp = new B2b_Realization();
+        Calendar cal = Calendar.getInstance();
+        String dateSecond = sdf.format(cal.getTime());
+        cal.add(Calendar.DATE, -2);
+        Date todate1 = cal.getTime();
+        String dateFirst = dateFormat.format(todate1);
+        int a11 = tp.searchWithCommercialMinus2(dateFirst, dateSecond);
+        System.out.print(a11);
+
+        open("http://beta.b2bpoint.ru/");
+        int b11 = tp.searchWithCommercialMinus2(dateFirst,dateSecond);
+        System.out.print(b11);
+
+    }
+    @Test
+        public void TestCommercialSmpMinus2()
+    {
+        B2b_Realization tp = new B2b_Realization();
+        Calendar cal = Calendar.getInstance();
+        String dateSecond = sdf.format(cal.getTime());
+        cal.add(Calendar.DATE, -2);
+        Date todate1 = cal.getTime();
+        String dateFirst = dateFormat.format(todate1);
+        int a12 = tp.searchWithCommercialSmpMinus2(dateFirst , dateSecond);
+        System.out.print(a12);
+
+        open("http://beta.b2bpoint.ru/");
+        int b12 = tp.searchWithCommercialSmpMinus2(dateFirst , dateSecond);
+        System.out.print(b12);
+
+    }
+    @Test
+        public void TestrPprf615Minus2()
+    {
+        B2b_Realization tp = new B2b_Realization();
+        Calendar cal = Calendar.getInstance();
+        String dateSecond = sdf.format(cal.getTime());
+        cal.add(Calendar.DATE, -2);
+        Date todate1 = cal.getTime();
+        String dateFirst = dateFormat.format(todate1);
+        int a13 = tp.searchWithCommercialPprf615minus2 (dateFirst, dateSecond);
+        System.out.println(a13);
+
+        open("http://beta.b2bpoint.ru/");
+        int b13 = tp.searchWithCommercialPprf615minus2(dateFirst , dateSecond);
+        System.out.println(b13);
+    }
+    @Test
+        public void TestFz44WithRtcToday()
+    {
+        B2b_Realization tp = new B2b_Realization();
+        Calendar cal = Calendar.getInstance();
+        String dateSecond = sdf.format(cal.getTime());
+        String dateFirst = sdf.format(cal.getTime());
+        int a14 = tp.searchWithFz44WithRtcToday (dateFirst, dateSecond);
+        System.out.println(a14);
+
+        open ("https://www.rts-tender.ru/auctionsearch");
+        
+
+    }
+
+
+
 }
