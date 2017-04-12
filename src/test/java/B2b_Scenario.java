@@ -18,7 +18,7 @@ public class B2b_Scenario {
 
     private static final DateFormat sdf = new SimpleDateFormat("dd.MM.yyyy ");
     private static final DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy ");
-    private static final Calendar cal = Calendar.getInstance();
+
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "D:/ChromeDriver/chromedriver.exe");
@@ -225,7 +225,9 @@ public class B2b_Scenario {
         System.out.println(a14);
 
         open ("https://www.rts-tender.ru/auctionsearch");
-        
+        Rtc_Realization rtp = new Rtc_Realization();
+
+
 
     }
 

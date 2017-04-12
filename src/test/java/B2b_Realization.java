@@ -22,12 +22,7 @@ public class B2b_Realization {
     private SelenideElement fz44 = $("#SearchForm > div:nth-child(1) > div > div > div > label:nth-child(2) > i");
     private SelenideElement smp = $("#SearchForm > div:nth-child(3) > div > div > div > label > i");
     private SelenideElement fz223 = $ ("#SearchForm > div:nth-child(1) > div > div > div > label:nth-child(5) > i");
-    private SelenideElement fzRtc44 = $("#dnn_ctr691_View_RadioButton3");
-    private SelenideElement rtcDate = $("#aStable1 > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(2) > td:nth-child(1) > label");
-    private SelenideElement dateRtcFrom = $ ("#dnn_ctr691_View_dateFilter1From");
-    private SelenideElement dateRtcTo = $("#dnn_ctr691_View_dateFilter1To");
-    private SelenideElement buttonRtcShow = $ ("#dnn_ctr691_View_aSbuttonSearch");
-    private SelenideElement quantityRtc =$("#dnn_ctr691_View_aStotalCount");
+
 
     public int searchWithZmoToday(String date) {
         zmo.click();
@@ -229,7 +224,7 @@ public class B2b_Realization {
         return resultPprf615Minus2;
 
     }
-    public int searchWithFz44WithRtcToday (String dateFirst , String dateSecond , String dateRtcFirst , String dateRtcSecond)
+    public int searchWithFz44WithRtcToday(String dateFirst, String dateSecond)
     {
         fz44.click();
         dateFrom.setValue(dateFirst);
@@ -245,15 +240,6 @@ public class B2b_Realization {
         tmp = tmp.replace("1000","");
         int resultFz44WithRtcToday = Integer.parseInt(tmp);
 
-
-
-        fzRtc44.click();
-        switchTo().window(1);
-        rtcDate.click();
-        dateRtcFrom.setValue(dateRtcFirst);
-        dateRtcTo.setValue(dateRtcSecond);
-        buttonRtcShow.click();
-        String resultRtcString = quantityRtc.shouldBe(Condition.visible).getText();
 
 
 
