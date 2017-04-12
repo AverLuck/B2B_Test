@@ -240,11 +240,26 @@ public class B2b_Realization {
         tmp = tmp.replace("1000","");
         int resultFz44WithRtcToday = Integer.parseInt(tmp);
 
-
-
-
-
         return resultFz44WithRtcToday;
+    }
+
+    public int searchWithFz223WithRtcToday (String dateFirst , String dateSecond)
+    {
+        fz223.click();
+        dateFrom.setValue(dateFirst);
+        dateTo.setValue(dateSecond);
+        buttonSelectTender.click();
+        rts.click();
+        buttonSelectTender.click();
+        buttomShow.click();
+
+        String resultString = quantity.shouldBe(Condition.visible).getText();
+        Pattern pattern = Pattern.compile("[^\\d*]");
+        String tmp = pattern.matcher(resultString).replaceAll("");
+        tmp.replace("1000" , "");
+        int resultFz223WithRtcToday = Integer.parseInt(tmp) ;
+
+        return resultFz223WithRtcToday;
     }
 }
 
