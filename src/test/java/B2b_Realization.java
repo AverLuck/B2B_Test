@@ -261,5 +261,24 @@ public class B2b_Realization {
 
         return resultFz223WithRtcToday;
     }
+
+    public int searchWithPprf615WithRtcToday (String dateFirst, String dateSecond)
+    {
+        pprf615.click();
+        dateFrom.setValue(dateFirst);
+        dateTo.setValue(dateSecond);
+        buttonSelectTender.click();
+        rts.click();
+        buttonSelectTender.click();
+        buttomShow.click();
+        String resultString = quantity.shouldBe(Condition.visible).getText();           //метод для разбиения числа
+        Pattern pattern = Pattern.compile("[^\\d]*");       //склеиваем оба числа
+        String tmp = pattern.matcher(resultString).replaceAll("");
+        tmp = tmp.replace("1000","");
+        int resultPprf44WithRtcToday = Integer.parseInt(tmp);
+
+        return resultPprf44WithRtcToday;
+
+    }
 }
 

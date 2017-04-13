@@ -240,17 +240,36 @@ public class B2b_Scenario {
         String dateFirst = sdf.format(cal.getTime());
         String dateSecond = sdf.format(cal.getTime());
         int a15 = tp.searchWithFz223WithRtcToday(dateFirst , dateSecond);
-        System.out.println("Результат с B2и:" + "" + a15);
+        System.out.println("Результат с B2b:" + "" + a15);
 
 
         open("https://www.rts-tender.ru/auctionsearch");
         Rtc_Realization rtp = new Rtc_Realization();
         String dateRtcFz223From = sdf.format(cal.getTime());
         String dateRtcFz223To = sdf.format(cal.getTime());
-        int b14
+        int b15 = rtp.searchWithRtcFz223Today ( dateRtcFz223From , dateRtcFz223To );
+        System.out.println("Результат с RTC:" + "" + b15);
     }
 
+    @Test
+        public void TestPprfWithRtcToday ()
+    {
+        B2b_Realization tp = new B2b_Realization();
+        Calendar cal = Calendar.getInstance();
+        String dateFirst = sdf.format(cal.getTime());
+        String dateSecond = sdf.format(cal.getTime());
+        int a16 = tp.searchWithPprf615WithRtcToday (dateFirst, dateSecond);
+        System.out.println("Результат с B2b:" + "" + a16);
 
+        open("https://www.rts-tender.ru/auctionsearch");
+        Rtc_Realization rtp = new Rtc_Realization();
+        String dateRtcPprf615From = sdf.format(cal.getTime());
+        String dateRtcPprf615To = sdf.format(cal.getTime());
+        int b16 = rtp.searchWithRtcPprf615Today( dateRtcPprf615From , dateRtcPprf615To);
+        System.out.println("Результат с РТС:" + "" + b16);
+
+
+    }
 
 
 }
